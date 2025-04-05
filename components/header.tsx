@@ -47,7 +47,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          {balance.RLUSD > 0 && <Button variant="outline" size="sm">
+          {isConnected && <Button variant="outline" size="sm">
             $RLUSD {balance.RLUSD?.toFixed(2) ?? 0}
           </Button>}
           {isConnected ? (
