@@ -9,7 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ChevronDown, Menu, X } from "lucide-react"
 
 export default function Header() {
-  const { isConnected, address, disconnect } = useWallet()
+  const { isConnected, address, disconnect, balance } = useWallet()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleDisconnect = () => {
@@ -47,33 +47,36 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
+          {balance.RLUSD > 0 && <Button variant="outline" size="sm">
+            $RLUSD {balance.RLUSD?.toFixed(2) ?? 0}
+          </Button>}
           {isConnected ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                  <Link href="/dashboard" className="w-full">
-                    My Dashboard
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/investments" className="w-full">
-                    My Investments
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/votes" className="w-full">
-                    My Votes
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    <Link href="/dashboard" className="w-full">
+                      My Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/investments" className="w-full">
+                      My Investments
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/votes" className="w-full">
+                      My Votes
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
           ) : (
             <ConnectWalletButton />
           )}
