@@ -1,0 +1,81 @@
+export const mockProjects = [
+  {
+    id: "1",
+    title: "XRPL DeFi Lending Platform",
+    description:
+      "A decentralized lending platform built on XRPL that allows users to lend and borrow assets with competitive interest rates. The platform will use RLUSD as collateral and provide a seamless user experience.",
+    author: "John Doe",
+    category: "DeFi",
+    daysAgo: 5,
+    fundingGoal: 10000,
+    currentFunding: 7500,
+    fundingPercentage: 75,
+    votes: 120,
+  },
+  {
+    id: "2",
+    title: "NFT Marketplace for Digital Art",
+    description:
+      "An NFT marketplace specifically designed for digital artists on the XRPL. The platform will feature low fees, artist royalties, and integration with popular digital art tools.",
+    author: "Sarah Johnson",
+    category: "NFT",
+    daysAgo: 10,
+    fundingGoal: 8000,
+    currentFunding: 2000,
+    fundingPercentage: 25,
+    votes: 45,
+  },
+  {
+    id: "3",
+    title: "Cross-Chain Bridge for XRPL",
+    description:
+      "A secure bridge that enables assets to move between XRPL and other popular blockchains. This will increase liquidity and use cases for XRPL assets.",
+    author: "Michael Chen",
+    category: "Infrastructure",
+    daysAgo: 3,
+    fundingGoal: 15000,
+    currentFunding: 15000,
+    fundingPercentage: 100,
+    votes: 200,
+  },
+  {
+    id: "4",
+    title: "XRPL-Based Gaming Platform",
+    description:
+      "A gaming platform that uses XRPL for in-game assets and transactions. Players can own, trade, and sell their in-game items as NFTs on the XRPL.",
+    author: "Emily Rodriguez",
+    category: "Gaming",
+    daysAgo: 8,
+    fundingGoal: 12000,
+    currentFunding: 6000,
+    fundingPercentage: 50,
+    votes: 80,
+  },
+  {
+    id: "5",
+    title: "Decentralized Social Media on XRPL",
+    description:
+      "A social media platform built on XRPL that gives users control over their data and content. Users can monetize their content directly without intermediaries.",
+    author: "David Kim",
+    category: "Social",
+    daysAgo: 15,
+    fundingGoal: 9000,
+    currentFunding: 3600,
+    fundingPercentage: 40,
+    votes: 65,
+  },
+  {
+    id: "6",
+    title: "XRPL Analytics Dashboard",
+    description:
+      "A comprehensive analytics dashboard for XRPL that provides insights into network activity, token metrics, and market trends.",
+    author: "Lisa Wang",
+    category: "Infrastructure",
+    daysAgo: 6,
+    fundingGoal: 5000,
+    currentFunding: 4000,
+    fundingPercentage: 80,
+    votes: 95,
+  },
+]
+
