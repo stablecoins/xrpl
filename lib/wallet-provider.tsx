@@ -1,6 +1,10 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import sdk from '@crossmarkio/sdk';
+import {Client} from 'xrpl';
+
+const RLUSD_ADDRESS = "rQhWct2fv4Vc4KRjRgMrxa8xPN9Zx9iLKV";
 
 interface WalletContextType {
   connect: () => Promise<void>
@@ -13,6 +17,8 @@ interface WalletContextType {
     investmentTokens: number
   }
 }
+
+const client = new Client("wss://testnet.xrpl-labs.com/");
 
 const WalletContext = createContext<WalletContextType>({
   connect: async () => {},
@@ -38,13 +44,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   // Check if wallet was previously connected
   useEffect(() => {
     const savedAddress = localStorage.getItem("walletAddress")
+    const savedRLUSD = localStorage.getItem("rlUsd") ?? "0"
     if (savedAddress) {
       setIsConnected(true)
       setAddress(savedAddress)
-      // In a real app, we would fetch the actual balances here
       setBalance({
-        RLUSD: 1000,
-        investmentTokens: 100,
+        RLUSD: parseFloat(savedRLUSD),
+        investmentTokens: 0
       })
     }
   }, [])
@@ -52,25 +58,35 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const connect = async () => {
     try {
       setIsConnecting(true)
+      await client.connect()
 
-      // In a real implementation, we would use the Xumm SDK here
-      // For this example, we'll simulate a connection
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      let { response } = await sdk.methods.signInAndWait();
 
-      // Simulate a successful connection
-      const mockAddress = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
-      setAddress(mockAddress)
+      const publicAddress = response.data.address;
+      setAddress(publicAddress)
+
+      const xrplResponse = await client.request({
+        "command": "gateway_balances",
+        "account": publicAddress,
+        "strict": true,
+        "ledger_index": "validated"
+      })
+      const rlusdAsset = xrplResponse?.result?.assets
+      console.log(rlusdAsset)
+      const rlusdAmount = parseFloat(rlusdAsset ? rlusdAsset[RLUSD_ADDRESS][0].value : '0');
+
       setIsConnected(true)
-      localStorage.setItem("walletAddress", mockAddress)
-
-      // Set mock balances
+      localStorage.setItem("walletAddress", publicAddress)
+      localStorage.setItem("rlUsd", rlusdAmount.toString())
+      
       setBalance({
-        RLUSD: 1000,
-        investmentTokens: 100,
+        RLUSD: rlusdAmount,
+        investmentTokens: 0,
       })
     } catch (error) {
-      console.error("Failed to connect wallet:", error)
+      console.error(error)
     } finally {
+      await client.disconnect()
       setIsConnecting(false)
     }
   }
