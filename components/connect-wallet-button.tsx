@@ -17,7 +17,11 @@ export function ConnectWalletButton({ onClick }: ConnectWalletButtonProps) {
   }
 
   return (
-    <Button onClick={handleConnect} disabled={isConnecting}>
+    <Button
+      onClick={handleConnect}
+      disabled={isConnecting}
+      className="rounded-full px-4 transition-all duration-300 hover:shadow-lg"
+    >
       <Wallet className="mr-2 h-4 w-4" />
       {isConnecting ? "Connecting..." : "Connect Wallet"}
     </Button>

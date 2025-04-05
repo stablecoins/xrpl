@@ -3,14 +3,25 @@
 import { Button } from "@/components/ui/button"
 import { useWallet } from "@/lib/wallet-provider"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ConnectWalletButton } from "./connect-wallet-button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ChevronDown, Menu, X } from "lucide-react"
-
+import { motion } from "framer-motion"
+import Image from "next/image"
 export default function Header() {
   const { isConnected, address, disconnect } = useWallet()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const handleDisconnect = () => {
     disconnect()
@@ -18,28 +29,33 @@ export default function Header() {
   }
 
   return (
-    <header className="border-b">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/80 backdrop-blur-md border-b" : "bg-transparent"}`}
+    >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center">
-          <Link href="/" className="text-xl font-bold">
-            XRPL Platform
+          <Link href="/">
+            <Image src="/xidebt.svg" alt="Logo" width={110} height={110} />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/projects" className="text-sm font-medium hover:text-primary">
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link href="/projects" className="nav-link">
             Projects
           </Link>
-          <Link href="/invest" className="text-sm font-medium hover:text-primary">
+          <Link href="/invest" className="nav-link">
             Invest
           </Link>
           {isConnected && (
             <>
-              <Link href="/dashboard" className="text-sm font-medium hover:text-primary">
+              <Link href="/votes" className="nav-link">
+                Vote
+              </Link>
+              <Link href="/dashboard" className="nav-link">
                 Dashboard
               </Link>
-              <Link href="/submit-project" className="text-sm font-medium hover:text-primary">
+              <Link href="/submit-project" className="nav-link">
                 Submit Project
               </Link>
             </>
@@ -50,12 +66,12 @@ export default function Header() {
           {isConnected ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="rounded-full px-4">
                   {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
                   <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuItem>
                   <Link href="/dashboard" className="w-full">
                     My Dashboard
@@ -87,18 +103,23 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden border-t p-4">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="md:hidden border-t p-4 bg-background/95 backdrop-blur-sm"
+        >
           <nav className="flex flex-col space-y-4">
             <Link
               href="/projects"
-              className="text-sm font-medium hover:text-primary"
+              className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Projects
             </Link>
             <Link
               href="/invest"
-              className="text-sm font-medium hover:text-primary"
+              className="text-sm font-medium hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Invest
@@ -106,15 +127,22 @@ export default function Header() {
             {isConnected && (
               <>
                 <Link
+                  href="/votes"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Vote
+                </Link>
+                <Link
                   href="/dashboard"
-                  className="text-sm font-medium hover:text-primary"
+                  className="text-sm font-medium hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link
                   href="/submit-project"
-                  className="text-sm font-medium hover:text-primary"
+                  className="text-sm font-medium hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Submit Project
@@ -127,7 +155,7 @@ export default function Header() {
                   <div className="text-sm font-medium">
                     Connected: {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
                   </div>
-                  <Button variant="outline" size="sm" onClick={handleDisconnect}>
+                  <Button variant="outline" size="sm" onClick={handleDisconnect} className="rounded-full">
                     Disconnect
                   </Button>
                 </div>
@@ -136,7 +164,7 @@ export default function Header() {
               )}
             </div>
           </nav>
-        </div>
+        </motion.div>
       )}
     </header>
   )

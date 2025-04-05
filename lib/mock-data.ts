@@ -77,5 +77,31 @@ export const mockProjects = [
     fundingPercentage: 80,
     votes: 95,
   },
+  {
+    id: "7",
+    title: "XRPL Decentralized Exchange",
+    description:
+      "A fully decentralized exchange built on XRPL that allows for seamless trading of various assets with minimal fees and maximum security.",
+    author: "Alex Thompson",
+    category: "DeFi",
+    daysAgo: 12,
+    fundingGoal: 20000,
+    currentFunding: 8000,
+    fundingPercentage: 40,
+    votes: 110,
+  },
+  {
+    id: "8",
+    title: "XRPL Identity Solution",
+    description:
+      "A decentralized identity solution that leverages XRPL to provide secure, private, and portable digital identities for individuals and organizations.",
+    author: "Sophia Martinez",
+    category: "Infrastructure",
+    daysAgo: 9,
+    fundingGoal: 7500,
+    currentFunding: 3000,
+    fundingPercentage: 40,
+    votes: 55,
+  },
 ]
 

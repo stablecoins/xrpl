@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight, BarChart3, Coins, Vote } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Dashboard() {
   const { isConnected, address, balance, disconnect } = useWallet()
@@ -23,77 +24,119 @@ export default function Dashboard() {
     return null
   }
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  }
+
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tighter">Dashboard</h1>
+    <div className="space-y-10">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <h1 className="text-3xl font-bold tracking-tighter mb-2">Dashboard</h1>
         <p className="text-muted-foreground">Manage your investments and votes</p>
-      </div>
+      </motion.div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">RLUSD Balance</CardTitle>
-            <Coins className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{balance.RLUSD.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">Available for investment</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Investment Tokens</CardTitle>
-            <BarChart3 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{balance.investmentTokens.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">Your voting power</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Projects Voted</CardTitle>
-            <Vote className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">3</div>
-            <p className="text-xs text-muted-foreground">Active votes</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Projects Submitted</CardTitle>
-            <BarChart3 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">1</div>
-            <p className="text-xs text-muted-foreground">Your proposals</p>
-          </CardContent>
-        </Card>
-      </div>
+      <motion.div
+        className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.div variants={item}>
+          <Card className="card-hover border-none bg-card/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-base font-medium">RLUSD Balance</CardTitle>
+              <Coins className="h-5 w-5 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold mb-1">{balance.RLUSD.toLocaleString()}</div>
+              <p className="text-xs text-muted-foreground">Available for investment</p>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card>
+        <motion.div variants={item}>
+          <Card className="card-hover border-none bg-card/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-base font-medium">Investment Tokens</CardTitle>
+              <BarChart3 className="h-5 w-5 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold mb-1">{balance.investmentTokens.toLocaleString()}</div>
+              <p className="text-xs text-muted-foreground">Your voting power</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div variants={item}>
+          <Card className="card-hover border-none bg-card/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-base font-medium">Projects Voted</CardTitle>
+              <Vote className="h-5 w-5 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold mb-1">3</div>
+              <p className="text-xs text-muted-foreground">Active votes</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div variants={item}>
+          <Card className="card-hover border-none bg-card/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-base font-medium">Projects Submitted</CardTitle>
+              <BarChart3 className="h-5 w-5 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold mb-1">1</div>
+              <p className="text-xs text-muted-foreground">Your proposals</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        className="grid gap-6 md:grid-cols-2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        <Card className="border-none bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
             <CardDescription>Common tasks you might want to perform</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
             <Link href="/invest">
-              <Button className="w-full">
+              <Button className="w-full rounded-full transition-all hover:shadow-lg hover:shadow-primary/20">
                 Invest RLUSD
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
+            <Link href="/votes">
+              <Button variant="outline" className="w-full rounded-full transition-all hover:bg-primary/10">
+                Vote on Projects
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
             <Link href="/submit-project">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full rounded-full transition-all hover:bg-primary/10">
                 Submit New Project
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/projects">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full rounded-full transition-all hover:bg-primary/10">
                 Browse Projects
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -101,7 +144,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-none bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Your Wallet</CardTitle>
             <CardDescription>XRPL wallet details</CardDescription>
@@ -115,12 +158,16 @@ export default function Dashboard() {
               <div className="text-sm font-medium">Network</div>
               <div className="mt-1 text-sm text-muted-foreground">XRPL Mainnet</div>
             </div>
-            <Button variant="outline" className="w-full" onClick={() => disconnect()}>
+            <Button
+              variant="outline"
+              className="w-full rounded-full transition-all hover:bg-destructive/10"
+              onClick={() => disconnect()}
+            >
               Disconnect Wallet
             </Button>
           </CardContent>
         </Card>
-      </div>
+      </motion.div>
     </div>
   )
 }
