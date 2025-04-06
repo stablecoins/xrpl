@@ -1,6 +1,10 @@
-# How to Deploy?
+# Ripple USD (RLUSD) project
 
-Demo project for the BizThon PBW Hackathon.
+Demo project for the BizThon PBW Hackathon 2025 using the Ripple USD (RLUSD) stablecoin
+
+Contact us : support@stablecoin.org
+
+## How to Deploy?
 
 This web application allows users to exchange **RLUSD** stablecoins for **DBT tokens**, which represent an investment in a fund.
 
@@ -10,7 +14,7 @@ After the token is created, you can deploy the web application.
 
 The site is also available live at [stablecoin.org](https://stablecoin.org).
 
-## Create the DBT
+## Create the debt token DBT
 ```
 cd token
 node TokenCreate.js
@@ -22,4 +26,3 @@ node TokenCreate.js
 yarn install
 yarn dev
 ```
-
