@@ -1,11 +1,12 @@
 export const mockProjects = [
   {
     id: "1",
-    title: "XRPL DeFi Lending Platform",
+    icon: "🌳",
+    title: "Reforestation & Biodiversity Restoration",
     description:
-      "A decentralized lending platform built on XRPL that allows users to lend and borrow assets with competitive interest rates. The platform will use RLUSD as collateral and provide a seamless user experience.",
+      "A regenerative lending platform on XRPL that funds reforestation and biodiversity projects. Stake RLUSD, earn yield, and track real-world impact through on-chain verifications",
     author: "John Doe",
-    category: "DeFi",
+    category: "Biodiversity",
     daysAgo: 5,
     fundingGoal: 10000,
     currentFunding: 7500,
@@ -14,11 +15,12 @@ export const mockProjects = [
   },
   {
     id: "2",
-    title: "NFT Marketplace for Digital Art",
+    icon: "🧑‍⚕️",
+    title: "Humanitarian Health Financing",
     description:
-      "An NFT marketplace specifically designed for digital artists on the XRPL. The platform will feature low fees, artist royalties, and integration with popular digital art tools.",
+      "A decentralized credit system supporting NGOs in health emergencies. Loans issued in iDebt, milestone-based repayments, and transparent DAO oversight ensure measurable ESG outcomes.",
     author: "Sarah Johnson",
-    category: "NFT",
+    category: "Health",
     daysAgo: 10,
     fundingGoal: 8000,
     currentFunding: 2000,
@@ -27,11 +29,12 @@ export const mockProjects = [
   },
   {
     id: "3",
-    title: "Cross-Chain Bridge for XRPL",
+    icon: "☀️",
+    title: "Clean Energy Deployment",
     description:
-      "A secure bridge that enables assets to move between XRPL and other popular blockchains. This will increase liquidity and use cases for XRPL assets.",
+      "An impact-first lending protocol enabling solar and wind infrastructure financing in underserved areas. Stakeholders earn rewards while reducing global carbon footprint.",
     author: "Michael Chen",
-    category: "Infrastructure",
+    category: "Energy",
     daysAgo: 3,
     fundingGoal: 15000,
     currentFunding: 15000,
@@ -40,11 +43,12 @@ export const mockProjects = [
   },
   {
     id: "4",
-    title: "XRPL-Based Gaming Platform",
+    icon: "💧",
+    title: "Clean Water Access Infrastructure",
     description:
-      "A gaming platform that uses XRPL for in-game assets and transactions. Players can own, trade, and sell their in-game items as NFTs on the XRPL.",
+      "Finance water purification and delivery systems for communities in need. XiDebt combines real-world infrastructure funding with on-chain transparency and social returns",
     author: "Emily Rodriguez",
-    category: "Gaming",
+    category: "Water",
     daysAgo: 8,
     fundingGoal: 12000,
     currentFunding: 6000,
@@ -53,11 +57,12 @@ export const mockProjects = [
   },
   {
     id: "5",
-    title: "Decentralized Social Media on XRPL",
+    icon: "🌾",
+    title: "Sustainable Agriculture Credit",
     description:
-      "A social media platform built on XRPL that gives users control over their data and content. Users can monetize their content directly without intermediaries.",
+      "Support small-scale farmers and eco-agriculture cooperatives with long-term loans on XRPL. Stakers back resilient food systems and receive ESG data-backed returns.",
     author: "David Kim",
-    category: "Social",
+    category: "Farming",
     daysAgo: 15,
     fundingGoal: 9000,
     currentFunding: 3600,
@@ -66,11 +71,12 @@ export const mockProjects = [
   },
   {
     id: "6",
-    title: "XRPL Analytics Dashboard",
+    icon: "🧑‍🏫",
+    title: "Digital Education for All",
     description:
-      "A comprehensive analytics dashboard for XRPL that provides insights into network activity, token metrics, and market trends.",
+      "A decentralized financing platform for edtech startups creating access to education in emerging markets. RLUSD staking fuels inclusion, with transparent quarterly repayments.",
     author: "Lisa Wang",
-    category: "Infrastructure",
+    category: "Education",
     daysAgo: 6,
     fundingGoal: 5000,
     currentFunding: 4000,
@@ -78,4 +84,3 @@ export const mockProjects = [
     votes: 95,
   },
 ]
-

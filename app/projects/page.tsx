@@ -76,7 +76,12 @@ export default function Projects() {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle>{project.title}</CardTitle>
+                        <CardTitle>
+                          {project.icon} 
+                          <br />
+                          <br />
+                          {project.title}
+                        </CardTitle>
                         <CardDescription className="mt-1">
                           by {project.author} • {project.daysAgo} days ago
                         </CardDescription>
@@ -91,7 +96,7 @@ export default function Projects() {
                         <span>Funding Progress</span>
                         <span className="font-medium">{project.fundingPercentage}%</span>
                       </div>
-                      <Progress value={project.fundingPercentage} className="h-2" />
+                      <Progress value={project.fundingPercentage} className={"h-2"} />
                       <div className="flex justify-between text-xs text-muted-foreground">
                         <span>{project.currentFunding} RLUSD raised</span>
                         <span>Goal: {project.fundingGoal} RLUSD</span>
