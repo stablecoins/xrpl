@@ -13,16 +13,16 @@ async function main(){
         "TransactionType": "AMMCreate",
         "Account": hot_wallet.address,
         "Amount": {
-          "currency": "524C555344000000000000000000000000000000",
+          "currency": "524C555344000000000000000000000000000000", // RLUSD
           "issuer": "rQhWct2fv4Vc4KRjRgMrxa8xPN9Zx9iLKV",
-          "value": '100000'
+          "value": '1'
         },
         "Amount2": {
-          "currency": "FOO",
+          "currency": "5849444542540000000000000000000000000000", // XIDEBT
           "issuer": "rDPSgbrVQcBgVRC2o5yp8b4ACFJFEFeobb",
-          "value": '100000'
+          "value": '1'
         },
-        "TradingFee": 500, // 500 = 0.5%
+        "TradingFee": 250, // 0.25%
         "Fee": amm_fee_drops
     }
     const prepared_tx = await client.autofill(ammCreate)
