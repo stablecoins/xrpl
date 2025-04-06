@@ -1,7 +1,8 @@
 export const mockProjects = [
   {
     id: "1",
-    title: "🌳 Reforestation & Biodiversity Restoration",
+    icon: "🌳",
+    title: "Reforestation & Biodiversity Restoration",
     description:
       "A regenerative lending platform on XRPL that funds reforestation and biodiversity projects. Stake RLUSD, earn yield, and track real-world impact through on-chain verifications",
     author: "John Doe",
@@ -14,7 +15,8 @@ export const mockProjects = [
   },
   {
     id: "2",
-    title: "🧑‍⚕️ Humanitarian Health Financing",
+    icon: "🧑‍⚕️",
+    title: "Humanitarian Health Financing",
     description:
       "A decentralized credit system supporting NGOs in health emergencies. Loans issued in iDebt, milestone-based repayments, and transparent DAO oversight ensure measurable ESG outcomes.",
     author: "Sarah Johnson",
@@ -27,7 +29,8 @@ export const mockProjects = [
   },
   {
     id: "3",
-    title: "☀️ Clean Energy Deployment",
+    icon: "☀️",
+    title: "Clean Energy Deployment",
     description:
       "An impact-first lending protocol enabling solar and wind infrastructure financing in underserved areas. Stakeholders earn rewards while reducing global carbon footprint.",
     author: "Michael Chen",
@@ -40,7 +43,8 @@ export const mockProjects = [
   },
   {
     id: "4",
-    title: "💧 Clean Water Access Infrastructure",
+    icon: "💧",
+    title: "Clean Water Access Infrastructure",
     description:
       "Finance water purification and delivery systems for communities in need. XiDebt combines real-world infrastructure funding with on-chain transparency and social returns",
     author: "Emily Rodriguez",
@@ -53,7 +57,8 @@ export const mockProjects = [
   },
   {
     id: "5",
-    title: "🌾 Sustainable Agriculture Credit",
+    icon: "🌾",
+    title: "Sustainable Agriculture Credit",
     description:
       "Support small-scale farmers and eco-agriculture cooperatives with long-term loans on XRPL. Stakers back resilient food systems and receive ESG data-backed returns.",
     author: "David Kim",
@@ -66,7 +71,8 @@ export const mockProjects = [
   },
   {
     id: "6",
-    title: "🧑‍🏫 Digital Education for All",
+    icon: "🧑‍🏫",
+    title: "Digital Education for All",
     description:
       "A decentralized financing platform for edtech startups creating access to education in emerging markets. RLUSD staking fuels inclusion, with transparent quarterly repayments.",
     author: "Lisa Wang",
@@ -78,4 +84,3 @@ export const mockProjects = [
     votes: 95,
   },
 ]
-
