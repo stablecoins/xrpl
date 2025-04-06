@@ -5,8 +5,14 @@ import { useWallet } from "@/lib/wallet-provider"
 import Link from "next/link"
 import { useState } from "react"
 import { ConnectWalletButton } from "./connect-wallet-button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { ChevronDown, Menu, X } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu"
+import { ChevronDown, Menu, X, Github } from "lucide-react" // Ajout de l'icône GitHub
+import { FaGithub } from "react-icons/fa";
 
 export default function Header() {
   const { isConnected, address, disconnect, balance } = useWallet()
@@ -47,10 +53,13 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          {isConnected && <Button variant="outline" size="sm">
-            $RLUSD {balance.RLUSD?.toFixed(2) ?? 0}
-          </Button>}
+          {isConnected && (
+            <Button variant="outline" size="sm">
+              $RLUSD {balance.RLUSD?.toFixed(2) ?? 0}
+            </Button>
+          )}
           {isConnected ? (
+<<<<<<< Updated upstream
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" size="sm">
@@ -77,9 +86,37 @@ export default function Header() {
                   <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+=======
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm">
+                  {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>
+                  <Link href="/dashboard" className="w-full">
+                    My Dashboard
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+>>>>>>> Stashed changes
           ) : (
             <ConnectWalletButton />
           )}
+
+          {/* GitHub Icon */}
+          <Link
+            href="https://github.com/stablecoins/xrpl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary"
+          >
+            <FaGithub size={32} color="black"/>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -124,7 +161,7 @@ export default function Header() {
                 </Link>
               </>
             )}
-            <div className="pt-2">
+            <div className="pt-2 space-y-2">
               {isConnected ? (
                 <div className="flex flex-col space-y-2">
                   <div className="text-sm font-medium">
@@ -137,6 +174,17 @@ export default function Header() {
               ) : (
                 <ConnectWalletButton onClick={() => setIsMenuOpen(false)} />
               )}
+
+              {/* GitHub Icon (mobile) */}
+              <Link
+                href="https://github.com/stablecoins/xrpl/blob/main/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary"
+              >
+                <Github className="h-5 w-5 mr-1" />
+                GitHub
+              </Link>
             </div>
           </nav>
         </div>
@@ -144,4 +192,3 @@ export default function Header() {
     </header>
   )
 }
-
