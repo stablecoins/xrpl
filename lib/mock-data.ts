@@ -40,9 +40,9 @@ export const mockProjects = [
   },
   {
     id: "4",
-    title: "XRPL-Based Gaming Platform",
+    title: "💧 Clean Water Access Infrastructure",
     description:
-      "A gaming platform that uses XRPL for in-game assets and transactions. Players can own, trade, and sell their in-game items as NFTs on the XRPL.",
+      "Finance water purification and delivery systems for communities in need. XiDebt combines real-world infrastructure funding with on-chain transparency and social returns",
     author: "Emily Rodriguez",
     category: "Gaming",
     daysAgo: 8,
