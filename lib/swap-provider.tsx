@@ -1,9 +1,39 @@
 "use client";
 
-import { Client, OfferCreate, Wallet } from "xrpl";
+import { Client, OfferCreate, TrustSet, Wallet } from "xrpl";
 import sdk from "@crossmarkio/sdk";
+import { Dispatch, SetStateAction } from "react";
 
 const client = new Client("wss://testnet.xrpl-labs.com/");
+const cold_wallet = Wallet.fromSeed("sEdVCMGRi9X6EchueWewoks35z1Pijh"); //rDPSgbrVQcBgVRC2o5yp8b4ACFJFEFeobb
+
+export const approve = async (callbackFn: Dispatch<SetStateAction<string>>) => {
+  try {
+    await client.connect();
+    const address = localStorage.getItem("walletAddress");
+
+    if (!address) throw Error("Wallet not connected");
+    const trustSetTx: TrustSet = {
+      TransactionType: "TrustSet",
+      Account: address,
+      LimitAmount: {
+        currency: "DBT",
+        issuer: cold_wallet.address,
+        value: "100000",
+      },
+    }
+    const trustSetPrepared = await client.autofill(trustSetTx)
+    const tx_result = await sdk.methods.signAndSubmitAndWait(trustSetPrepared)
+    console.log(tx_result);
+    callbackFn(tx_result.response.data.resp.result.hash)
+    return true;
+  } catch (e) {
+    console.error(e);
+    return false;
+  } finally {
+    await client.disconnect();
+  }
+};
 
 export const swap = async (token: number, stablecoin: number) => {
   const address = localStorage.getItem("walletAddress");
@@ -12,8 +42,6 @@ export const swap = async (token: number, stablecoin: number) => {
     await client.connect();
 
     if (!address) throw Error("Wallet not connected");
-
-    const cold_wallet = Wallet.fromSeed("sEdVCMGRi9X6EchueWewoks35z1Pijh"); //rDPSgbrVQcBgVRC2o5yp8b4ACFJFEFeobb
 
     const RLUSD_ISSUER = "rQhWct2fv4Vc4KRjRgMrxa8xPN9Zx9iLKV";
     let offer_token_tx: OfferCreate = {
