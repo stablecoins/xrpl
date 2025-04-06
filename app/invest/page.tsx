@@ -84,7 +84,7 @@ export default function Invest() {
         description: `You have invested ${amount} RLUSD and received ${estimatedTokens} investment tokens.`,
       });
 
-      //router.push("/dashboard")
+      router.push('/dashboard');
     } catch (error) {
       console.error("Investment failed:", error);
       toast({

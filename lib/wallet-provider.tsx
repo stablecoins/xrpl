@@ -5,6 +5,7 @@ import sdk from '@crossmarkio/sdk';
 import {Client} from 'xrpl';
 
 const RLUSD_ADDRESS = "rQhWct2fv4Vc4KRjRgMrxa8xPN9Zx9iLKV";
+const XIDEBT_ADDRESS = "rQhWct2fv4Vc4KRjRgMrxa8xPN9Zx9iLKV";
 
 interface WalletContextType {
   connect: () => Promise<void>
@@ -45,12 +46,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const savedAddress = localStorage.getItem("walletAddress")
     const savedRLUSD = localStorage.getItem("rlUsd") ?? "0"
+    const savedXIDEBT = localStorage.getItem("xidebt") ?? "0"
     if (savedAddress) {
       setIsConnected(true)
       setAddress(savedAddress)
       setBalance({
         RLUSD: parseFloat(savedRLUSD),
-        investmentTokens: 0
+        investmentTokens: parseFloat(savedXIDEBT)
       })
     }
   }, [])
@@ -71,16 +73,18 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         "strict": true,
         "ledger_index": "validated"
       })
-      const rlusdAsset = xrplResponse?.result?.assets
-      const rlusdAmount = parseFloat(rlusdAsset ? rlusdAsset[RLUSD_ADDRESS][0].value : '0');
+      const assets = xrplResponse?.result?.assets
+      const rlusdAmount = parseFloat(assets ? assets[RLUSD_ADDRESS][0].value : '0');
+      const xidebtAmount = parseFloat(assets ? assets[XIDEBT_ADDRESS][0].value : '0');
 
       setIsConnected(true)
       localStorage.setItem("walletAddress", publicAddress)
       localStorage.setItem("rlUsd", rlusdAmount.toString())
+      localStorage.setItem("xidebt", xidebtAmount.toString())
       
       setBalance({
         RLUSD: rlusdAmount,
-        investmentTokens: 0,
+        investmentTokens: xidebtAmount,
       })
     } catch (error) {
       console.error(error)
