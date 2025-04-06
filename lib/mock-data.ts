@@ -44,7 +44,7 @@ export const mockProjects = [
     description:
       "Finance water purification and delivery systems for communities in need. XiDebt combines real-world infrastructure funding with on-chain transparency and social returns",
     author: "Emily Rodriguez",
-    category: "Gaming",
+    category: "Water",
     daysAgo: 8,
     fundingGoal: 12000,
     currentFunding: 6000,
