@@ -73,16 +73,6 @@ export default function Header() {
                       My Dashboard
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="/investments" className="w-full">
-                      My Investments
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="/votes" className="w-full">
-                      My Votes
-                    </Link>
-                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
