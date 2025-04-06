@@ -57,7 +57,7 @@ async function main() {
 
 
       // Create trust line from hot to cold address --------------------------------
-  const currency_code = "FOO"
+  const currency_code = "DDD"
   const trust_set_tx = {
     "TransactionType": "TrustSet",
     "Account": hot_wallet.address,
@@ -122,7 +122,7 @@ async function main() {
 
 
     // Send token cold to hot ----------------------------------------------------------------
-    let issue_quantity = "3800"
+    let issue_quantity = "10000"
 
     let send_token_tx = {
       "TransactionType": "Payment",
@@ -149,33 +149,33 @@ async function main() {
     }
     
     // Send token hot to client----------------------------------------------------------------
-    issue_quantity = "2"
-    
-    send_token_tx = {
-      "TransactionType": "Payment",
-      "Account": hot_wallet.address,
-      "DeliverMax": {
-        "currency": currency_code,
-        "value": issue_quantity,
-        "issuer": cold_wallet.address
-      },
-      "Destination": third_wallet.address,
-      "DestinationTag": 1 // Needed since we enabled Require Destination Tags
-                          // on the hot account earlier.
-    }
-  
-    pay_prepared = await client.autofill(send_token_tx)
-    pay_signed = hot_wallet.sign(pay_prepared)
-    console.log(`hot to client - Sending ${issue_quantity} ${currency_code} to ${third_wallet.address}...`)
-    pay_result = await client.submitAndWait(pay_signed.tx_blob)
-    if (pay_result.result.meta.TransactionResult == "tesSUCCESS") {
-      console.log(`Transaction succeeded: https://testnet.xrpl.org/transactions/${pay_signed.hash}`)
-    } else {
-      console.log(pay_result)
-      throw `Error sending transaction: ${pay_result.result.meta.TransactionResult}`
-    }
+    //issue_quantity = "2"
+    //
+    //send_token_tx = {
+    //  "TransactionType": "Payment",
+    //  "Account": hot_wallet.address,
+    //  "DeliverMax": {
+    //    "currency": currency_code,
+    //    "value": issue_quantity,
+    //    "issuer": cold_wallet.address
+    //  },
+    //  "Destination": third_wallet.address,
+    //  "DestinationTag": 1 // Needed since we enabled Require Destination Tags
+    //                      // on the hot account earlier.
+    //}
+  //
+    //pay_prepared = await client.autofill(send_token_tx)
+    //pay_signed = hot_wallet.sign(pay_prepared)
+    //console.log(`hot to client - Sending ${issue_quantity} ${currency_code} to ${third_wallet.address}...`)
+    //pay_result = await client.submitAndWait(pay_signed.tx_blob)
+    //if (pay_result.result.meta.TransactionResult == "tesSUCCESS") {
+    //  console.log(`Transaction succeeded: https://testnet.xrpl.org/transactions/${pay_signed.hash}`)
+    //} else {
+    //  console.log(pay_result)
+    //  throw `Error sending transaction: ${pay_result.result.meta.TransactionResult}`
+    //}
 
-
+    //investor
     const latestLedger = await client.getLedgerIndex();
     const RLUSD_ISSUER = "rQhWct2fv4Vc4KRjRgMrxa8xPN9Zx9iLKV"
     let offer_token_tx = {
@@ -183,12 +183,12 @@ async function main() {
         "LastLedgerSequence" : latestLedger + 10,
         "Account": third_wallet.address,
         "TakerPays": {
-          "currency": currency_code,
-          "value": "1",
-          "issuer": cold_wallet.address
-        },
+            "currency": currency_code,
+            "value": "1",
+            "issuer": cold_wallet.address
+          },
         "TakerGets": {
-          "currency": "USD",
+          "currency": "524C555344000000000000000000000000000000",
           "value": "1",
           "issuer": RLUSD_ISSUER
         },
@@ -208,18 +208,18 @@ async function main() {
       throw `Error sending transaction: ${offer_result.result.meta.TransactionResult}`
     }
 
-
+    //offer
      offer_token_tx = {
         "TransactionType": "OfferCreate",
         "Account": hot_wallet.address,
         "TakerPays": {
-          "currency": "USD",
-          "value": "1",
-          "issuer": RLUSD_ISSUER
-        },
+            "currency": "524C555344000000000000000000000000000000",
+            "value": "5000",
+            "issuer": RLUSD_ISSUER
+          },
         "TakerGets": {
           "currency": currency_code,
-          "value": "1",
+          "value": "5000",
           "issuer": cold_wallet.address
         },
         
