@@ -72,7 +72,6 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         "ledger_index": "validated"
       })
       const rlusdAsset = xrplResponse?.result?.assets
-      console.log(rlusdAsset)
       const rlusdAmount = parseFloat(rlusdAsset ? rlusdAsset[RLUSD_ADDRESS][0].value : '0');
 
       setIsConnected(true)
