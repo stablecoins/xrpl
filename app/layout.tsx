@@ -8,9 +8,8 @@ import Header from "@/components/header"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "XRPL Investment Platform",
-  description: "Invest and vote on projects using XRPL",
-    generator: 'v0.dev'
+  title: "Earn interest on Ripple USD",
+  description: "Deposit RLUSD and earn interest"
 }
 
 export default function RootLayout({
@@ -28,7 +27,7 @@ export default function RootLayout({
               <main className="flex-1 container mx-auto py-6 px-4">{children}</main>
               <footer className="border-t py-4">
                 <div className="container mx-auto text-center text-sm text-muted-foreground">
-                  © {new Date().getFullYear()} XRPL Investment Platform
+                  © {new Date().getFullYear()} Stablecoin - support@stablecoin.org
                 </div>
               </footer>
             </div>

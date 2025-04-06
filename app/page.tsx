@@ -11,22 +11,19 @@ export default function Home() {
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Invest and Vote on XRPL Projects
+                Earn interest on Ripple USD
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                Connect your XRPL wallet, invest in RLUSD, and participate in community voting to fund innovative
-                projects.
+                Connect your XRPL wallet, invest in RLUSD, earn interest.
+                Join the community of investors and vote on investment opportunities.
               </p>
             </div>
             <div className="space-x-4">
               <Link href="/dashboard">
                 <Button>
-                  Get Started
+                  Earn interest
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
-              <Link href="/projects">
-                <Button variant="outline">Browse Projects</Button>
               </Link>
             </div>
           </div>
