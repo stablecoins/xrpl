@@ -2,6 +2,10 @@
 
 Demo project for the BizThon PBW Hackathon 2025 using the Ripple USD (RLUSD) stablecoin
 
+[Demo video](https://youtu.be/-CRGmzJe7M8)
+
+The site is also available live at [stablecoin.org](https://stablecoin.org).
+
 Contact us : support@stablecoin.org
 
 ## How to Deploy?
@@ -12,7 +16,6 @@ To make the application work, you first need to create the **DBT token**. This t
 
 After the token is created, you can deploy the web application.
 
-The site is also available live at [stablecoin.org](https://stablecoin.org).
 
 ## Create the debt token DBT
 ```
