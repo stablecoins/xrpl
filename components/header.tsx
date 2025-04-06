@@ -59,24 +59,6 @@ export default function Header() {
             </Button>
           )}
           {isConnected ? (
-<<<<<<< Updated upstream
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
-                    <ChevronDown className="ml-2 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    <Link href="/dashboard" className="w-full">
-                      My Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-=======
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
@@ -93,7 +75,6 @@ export default function Header() {
                 <DropdownMenuItem onClick={handleDisconnect}>Disconnect</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
->>>>>>> Stashed changes
           ) : (
             <ConnectWalletButton />
           )}

@@ -7,8 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ArrowRight, Coins, Info } from "lucide-react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { ArrowRight, Coins, Link } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { approve, swap } from "@/lib/swap-provider";
 
@@ -144,7 +143,7 @@ export default function Invest() {
             </div>
           </div>
           {hasApproved && <div className="space-y-2 flex items-center space-x-2 rounded-md border p-3 overflow-x-hidden truncate">
-              <div className="opacity-60 truncate">TrustSet: <Link href={`https://testnet.xrpl.org/transactions/${txHash}`} target="_blank">{txHash}</Link></div>
+              <div className="opacity-60 truncate">TrustSet: <a href={`https://testnet.xrpl.org/transactions/${txHash}`} target="_blank">{txHash}</a></div>
           </div>}
         </CardContent>
         <CardFooter className="flex justify-between">
